@@ -1,0 +1,58 @@
+<app-nav-button [content]="'Назад'" (click)="handleBack()"></app-nav-button>
+<form
+  class="ad-form"
+  [formGroup]="advertisementForm"
+  novalidate
+  (ngSubmit)="submit()"
+>
+  <div class="form-group">
+    <label>Номер</label>
+    <input
+      class="form-control"
+      name="id"
+      formControlName="id"
+      [disabled]="isUpdate"
+    />
+  </div>
+  <div class="form-group">
+    <label>Автор</label>
+    <input class="form-control" name="author" formControlName="author" />
+  </div>
+  <div class="form-group">
+    <label>Заголовок</label>
+    <input class="form-control" name="title" formControlName="title" />
+  </div>
+  <div class="form-group">
+    <label>Содержание</label>
+    <input class="form-control" name="content" formControlName="content" />
+  </div>
+  <div class="form-group">
+    <label>Дата создания</label>
+    <input
+      class="form-control"
+      name="createdDate"
+      formControlName="createdDate"
+    />
+  </div>
+  <div class="form-group">
+    <label>Дата изменения</label>
+    <input
+      class="form-control"
+      name="modifiedDate"
+      formControlName="modifiedDate"
+    />
+  </div>
+  <div class="form-group">
+    <label>Дата начала действия</label>
+    <input class="form-control" name="startDate" formControlName="startDate" />
+  </div>
+  <div class="form-group">
+    <label>Дата окончания действия</label>
+    <input class="form-control" name="name" formControlName="finishedDate" />
+  </div>
+  <div class="form-group">
+    <button [disabled]="advertisementForm.invalid">
+      Отправить
+    </button>
+  </div>
+</form>

@@ -1,0 +1,60 @@
+<div class="showcase-page" *ngIf="!isCreate && !isUpdate">
+  <app-nav-button
+    [content]="'Создать обьявление'"
+    (click)="handleCreate()"
+  ></app-nav-button>
+  <table>
+    <thead>
+      <tr>
+        <th>Номер</th>
+        <th>Автор</th>
+        <th>Заголовок</th>
+        <th>Содержание</th>
+        <th>Дата создания</th>
+        <th>Дата изменения</th>
+        <th>Дата начала действия</th>
+        <th>Дата окончания действия</th>
+        <th colspan="2"></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-advertisement [ngForOf]="advertisements">
+        <tr>
+          <td>advertisement.id</td>
+          <td>advertisement.author</td>
+          <td>advertisement.title</td>
+          <td>advertisement.content</td>
+          <td>advertisement.createdDate</td>
+          <td>advertisement.modifiedDate</td>
+          <td>advertisement.startDate</td>
+          <td>advertisement.finishedDate</td>
+          <td>
+            <app-nav-button
+              [content]="'Редактировать'"
+              (click)="handleUpdate(advertisement)"
+            ></app-nav-button>
+          </td>
+          <td>
+            <app-nav-button
+              [content]="'Удалить'"
+              (click)="handleDelete(advertisement.id)"
+            ></app-nav-button>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>
+
+<app-advertisement-form
+  *ngIf="isCreate"
+  [isCreate]="isCreate"
+  (resetState)="reset()"
+></app-advertisement-form>
+<app-advertisement-form
+  *ngIf="isUpdate"
+  [isUpdate]="isUpdate"
+  [initialState]="advertisementUpdate"
+  (resetState)="reset()"
+></app-advertisement-form>
