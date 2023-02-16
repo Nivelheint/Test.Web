@@ -11,12 +11,15 @@
       class="form-control"
       name="id"
       formControlName="id"
-      [disabled]="isUpdate"
     />
   </div>
   <div class="form-group">
     <label>Автор</label>
-    <input class="form-control" name="author" formControlName="author" />
+    <input
+      class="form-control"
+      name="author"
+      formControlName="author"
+    />
   </div>
   <div class="form-group">
     <label>Заголовок</label>
@@ -51,8 +54,6 @@
     <input class="form-control" name="name" formControlName="finishedDate" />
   </div>
   <div class="form-group">
-    <button [disabled]="advertisementForm.invalid">
-      Отправить
-    </button>
+    <button [disabled]="advertisementForm.invalid">Отправить</button>
   </div>
 </form>

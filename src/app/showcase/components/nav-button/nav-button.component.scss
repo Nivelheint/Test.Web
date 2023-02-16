@@ -1,4 +1,11 @@
 .nav-button {
   background-color: black;
   color: white;
+
+  &:hover {
+    cursor: pointer;
+    background-color: gray;
+  }
+
+  transition: all 0.3s;
 }

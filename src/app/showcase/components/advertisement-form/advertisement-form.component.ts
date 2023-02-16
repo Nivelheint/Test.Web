@@ -25,6 +25,7 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
 
   @Input() initialState: Advertisement = {
     id: 0,
+    authorId: 0,
     author: '',
     content: '',
     createdDate: '',
@@ -50,8 +51,16 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
 
   ngOnInit(): void {
+    const partialCopy = { ...this.initialState } as Partial<Advertisement>;
+    delete partialCopy.authorId;
+
+    if (this.isUpdate) {
+      this.advertisementForm.controls['id'].disable();
+      this.advertisementForm.controls['author'].disable();
+    }
+
     this.advertisementForm.setValue({
-      ...this.initialState,
+      ...(partialCopy as Omit<Advertisement, 'authorId'>),
     });
   }
 

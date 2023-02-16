@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AdvertisementService } from './../services/advertisement.service';
 import { Advertisement } from './../models/advertisement.model';
 import { Subscription } from 'rxjs';
+import { mocks } from 'src/app/constants';
 
 @Component({
   selector: 'app-showcase-page',
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class ShowcasePageComponent implements OnInit, OnDestroy {
   constructor(private advertisementService: AdvertisementService) {}
 
-  advertisements: Advertisement[] = [];
+  advertisements: Advertisement[] = mocks;
 
   isCreate = false;
 
@@ -39,8 +40,8 @@ export class ShowcasePageComponent implements OnInit, OnDestroy {
   }
 
   handleUpdate(advertisement: Advertisement) {
-    this.isUpdate = true;
     this.advertisementUpdate = advertisement;
+    this.isUpdate = true;
   }
 
   handleDelete(id: number) {

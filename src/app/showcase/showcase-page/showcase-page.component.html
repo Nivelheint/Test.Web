@@ -15,20 +15,19 @@
         <th>Дата начала действия</th>
         <th>Дата окончания действия</th>
         <th colspan="2"></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
       <ng-template ngFor let-advertisement [ngForOf]="advertisements">
         <tr>
-          <td>advertisement.id</td>
-          <td>advertisement.author</td>
-          <td>advertisement.title</td>
-          <td>advertisement.content</td>
-          <td>advertisement.createdDate</td>
-          <td>advertisement.modifiedDate</td>
-          <td>advertisement.startDate</td>
-          <td>advertisement.finishedDate</td>
+          <td>{{ advertisement.id }}</td>
+          <td>{{ advertisement.author }}</td>
+          <td>{{ advertisement.title }}</td>
+          <td>{{ advertisement.content }}</td>
+          <td>{{ advertisement.createdDate }}</td>
+          <td>{{ advertisement.modifiedDate }}</td>
+          <td>{{ advertisement.startDate }}</td>
+          <td>{{ advertisement.finishedDate }}</td>
           <td>
             <app-nav-button
               [content]="'Редактировать'"
