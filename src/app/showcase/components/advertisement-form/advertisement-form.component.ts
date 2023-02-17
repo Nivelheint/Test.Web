@@ -82,16 +82,16 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
       const subAdCreate = this.advertisementService
         .createAdvertisement(this.advertisementForm.value as Advertisement)
         .subscribe(() => {});
-      this.subscription.add(subAdCreate);
+      // this.subscription.add(subAdCreate);
     }
     if (this.isUpdate) {
       const subAdUpdate = this.advertisementService
         .updateAdvertisement(
           this.initialState.id,
-          this.advertisementForm.value as Advertisement
+          { ...this.advertisementForm.value, id: this.initialState.id } as Advertisement
         )
         .subscribe(() => {});
-      this.subscription.add(subAdUpdate);
+      // this.subscription.add(subAdUpdate);
     }
     this.handleBack();
   }

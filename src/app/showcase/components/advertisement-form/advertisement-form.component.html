@@ -22,7 +22,7 @@
       <option *ngIf="isUpdate" [value]="initialState.authorId" selected>
         {{ initialState.author }}
       </option>
-      <ng-template *ngIf="isCreate">
+      <ng-template [ngIf]="isCreate">
         <option *ngFor="let author of authors" [value]="author.id">
           {{ author.name + ' ' + author.surname }}
         </option>
