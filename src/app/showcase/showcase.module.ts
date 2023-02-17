@@ -5,6 +5,7 @@ import { NavButtonComponent } from './components/nav-button/nav-button.component
 import { AdvertisementFormComponent } from './components/advertisement-form/advertisement-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PopupComponent } from './components/popup/popup.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { PopupComponent } from './components/popup/popup.component';
     NavButtonComponent,
     AdvertisementFormComponent,
     PopupComponent,
+    PaginationComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [ShowcasePageComponent],
