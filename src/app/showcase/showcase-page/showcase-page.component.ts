@@ -18,17 +18,14 @@ export class ShowcasePageComponent implements OnInit, OnDestroy {
 
   isUpdate = false;
 
+  isDisplayPopup = false;
+
   advertisementUpdate: Advertisement = {} as Advertisement;
 
   private subscription = new Subscription();
 
   ngOnInit(): void {
-    const subAds = this.advertisementService
-      .getAdvertisements()
-      .subscribe((data) => {
-        this.advertisements = data;
-      });
-    this.subscription.add(subAds);
+    this.setAdvertisements();
   }
 
   ngOnDestroy(): void {
@@ -44,15 +41,35 @@ export class ShowcasePageComponent implements OnInit, OnDestroy {
     this.isUpdate = true;
   }
 
+  handlePopupAnswer = (answer: boolean) => {};
+
   handleDelete(id: number) {
-    const subAdDel = this.advertisementService
-      .deleteAdvertisement(id)
-      .subscribe(() => {});
-    this.subscription.add(subAdDel);
+    this.isDisplayPopup = true;
+    this.handlePopupAnswer = (answer: boolean) => {
+      if (answer) {
+        const subAdDel = this.advertisementService
+          .deleteAdvertisement(id)
+          .subscribe(() => {});
+        this.subscription.add(subAdDel);
+        this.isDisplayPopup = false;
+      } else {
+        this.isDisplayPopup = false;
+      }
+    }
+  }
+
+  setAdvertisements() {
+    const subAds = this.advertisementService
+      .getAdvertisements()
+      .subscribe((data) => {
+        this.advertisements = data;
+      });
+    this.subscription.add(subAds);
   }
 
   reset() {
     this.isCreate = false;
     this.isUpdate = false;
+    this.setAdvertisements();
   }
 }

@@ -57,3 +57,5 @@
   [initialState]="advertisementUpdate"
   (resetState)="reset()"
 ></app-advertisement-form>
+
+<app-popup *ngIf="isDisplayPopup" [text]="'Удалить обьявление?'" (answer)="handlePopupAnswer($event)"></app-popup>
