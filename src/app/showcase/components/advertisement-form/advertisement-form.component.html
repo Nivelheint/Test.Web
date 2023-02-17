@@ -14,12 +14,12 @@
     />
   </div>
   <div class="form-group">
+    <label>Выбрать автора</label>
     <select
       (change)="changeAuthor($event)"
       formControlName="authorId"
     >
-      <option value="">Выбрать автора</option>
-      <option *ngFor="let author of authors" [ngValue]="author.id">
+      <option *ngFor="let author of authors" [value]="author.id">
         {{ author.name + ' ' + author.surname }}
       </option>
     </select>

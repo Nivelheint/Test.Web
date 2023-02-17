@@ -94,6 +94,7 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
         .subscribe(() => {});
       this.subscription.add(subAdUpdate);
     }
+    this.handleBack();
   }
 
   handleBack() {
