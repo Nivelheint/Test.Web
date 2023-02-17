@@ -41,6 +41,7 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
 
   advertisementForm = new FormGroup({
     id: new FormControl(0, [Validators.required]),
+    author: new FormControl(''),
     authorId: new FormControl(0,[Validators.required]),
     title: new FormControl('', [Validators.required]),
     content: new FormControl('', [Validators.required]),
@@ -56,16 +57,16 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const partialCopy = { ...this.initialState } as Partial<Advertisement>
-    if(this.isCreate) {
-      delete partialCopy.author;
-    }
+    // delete partialCopy.author;
 
     if (this.isUpdate) {
       this.advertisementForm.controls['id'].disable();
+      this.advertisementForm.controls['authorId'].disable();
     }
 
     this.advertisementForm.setValue({
-      ...partialCopy as Omit<Advertisement, 'author'>,
+      // ...partialCopy as Omit<Advertisement, 'author'>,
+      ...this.initialState
     });
 
     if(this.isCreate) {
