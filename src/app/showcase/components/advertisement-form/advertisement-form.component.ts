@@ -10,6 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Advertisement } from '../../models/advertisement.model';
 import { AdvertisementService } from '../../services/advertisement.service';
 import { Subscription } from 'rxjs';
+import {AuthorService} from "../../services/author.service";
+import {Author} from "../../models/author.model";
 
 @Component({
   selector: 'app-advertisement-form',
@@ -17,7 +19,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./advertisement-form.component.scss'],
 })
 export class AdvertisementFormComponent implements OnInit, OnDestroy {
-  constructor(private advertisementService: AdvertisementService) {}
+  constructor(private advertisementService: AdvertisementService, private authorService: AuthorService) {}
 
   @Input() isCreate = false;
 
@@ -39,7 +41,7 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
 
   advertisementForm = new FormGroup({
     id: new FormControl(0, [Validators.required]),
-    author: new FormControl('', [Validators.required]),
+    authorId: new FormControl(0,[Validators.required]),
     title: new FormControl('', [Validators.required]),
     content: new FormControl('', [Validators.required]),
     createdDate: new FormControl('', [Validators.required]),
@@ -48,20 +50,28 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
     finishedDate: new FormControl('', [Validators.required]),
   });
 
+  authors: Author[] = [];
+
   private subscription = new Subscription();
 
   ngOnInit(): void {
-    const partialCopy = { ...this.initialState } as Partial<Advertisement>;
-    delete partialCopy.authorId;
+    const partialCopy = { ...this.initialState } as Partial<Advertisement>
+    if(this.isCreate) {
+      delete partialCopy.author;
+    }
 
     if (this.isUpdate) {
       this.advertisementForm.controls['id'].disable();
-      this.advertisementForm.controls['author'].disable();
     }
 
     this.advertisementForm.setValue({
-      ...(partialCopy as Omit<Advertisement, 'authorId'>),
+      ...partialCopy as Omit<Advertisement, 'author'>,
     });
+
+    if(this.isCreate) {
+      const subAuthor = this.authorService.getAuthors().subscribe((data => { this.authors = data }));
+      this.subscription.add(subAuthor);
+    }
   }
 
   ngOnDestroy(): void {
@@ -88,5 +98,10 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
 
   handleBack() {
     this.resetState.emit();
+  }
+
+  changeAuthor(e: Event) {
+    const select = e.target! as  HTMLSelectElement;
+    this.advertisementForm.get('authorId')?.setValue(+select.value, { onlySelf: true, } );
   }
 }

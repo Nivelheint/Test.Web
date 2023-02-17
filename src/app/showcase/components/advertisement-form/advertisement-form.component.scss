@@ -1,9 +1,9 @@
 input.ng-touched.ng-invalid {
-  border: solid red 2px;
+  border: solid red 2px !important;
 }
-input.ng-touched.ng-valid {
-  border: solid green 2px;
-}
+//input.ng-touched.ng-valid {
+//  border: solid green 2px;
+//}
 
 .ad-form {
   width: 300px;
@@ -15,4 +15,12 @@ input.ng-touched.ng-valid {
   flex-direction: column;
   gap: 3px;
   padding-bottom: 10px;
+
+  input {
+    font-size: 16px;
+    width: 300px;
+    height: 25px;
+    border-radius: 3px;
+    border-color: antiquewhite;
+  }
 }

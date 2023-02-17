@@ -1,4 +1,10 @@
-export const URL_API = 'https://localhost:7180/api/Advertisements';
+import {HttpHeaders} from "@angular/common/http";
+
+export const URL_API = 'https://localhost:7180/api';
+
+export const HTTP_OPTIONS = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+};
 
 export const mocks = [
   {

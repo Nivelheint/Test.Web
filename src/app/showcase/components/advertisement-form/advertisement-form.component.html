@@ -14,12 +14,15 @@
     />
   </div>
   <div class="form-group">
-    <label>Автор</label>
-    <input
-      class="form-control"
-      name="author"
-      formControlName="author"
-    />
+    <select
+      (change)="changeAuthor($event)"
+      formControlName="authorId"
+    >
+      <option value="">Выбрать автора</option>
+      <option *ngFor="let author of authors" [ngValue]="author.id">
+        {{ author.name + ' ' + author.surname }}
+      </option>
+    </select>
   </div>
   <div class="form-group">
     <label>Заголовок</label>
@@ -54,6 +57,6 @@
     <input class="form-control" name="name" formControlName="finishedDate" />
   </div>
   <div class="form-group">
-    <button [disabled]="advertisementForm.invalid">Отправить</button>
+    <app-nav-button [content]="'Отправить'" [disabled]="advertisementForm.invalid"></app-nav-button>
   </div>
 </form>
