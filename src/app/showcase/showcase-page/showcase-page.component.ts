@@ -49,7 +49,9 @@ export class ShowcasePageComponent implements OnInit, OnDestroy {
       if (answer) {
         const subAdDel = this.advertisementService
           .deleteAdvertisement(id)
-          .subscribe(() => {});
+          .subscribe(() => {
+            this.setAdvertisements();
+          });
         this.subscription.add(subAdDel);
         this.isDisplayPopup = false;
       } else {
