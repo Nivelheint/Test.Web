@@ -81,7 +81,9 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
     if (this.isCreate) {
       const subAdCreate = this.advertisementService
         .createAdvertisement(this.advertisementForm.value as Advertisement)
-        .subscribe(() => {});
+        .subscribe(() => {
+          this.handleBack();
+        });
       // this.subscription.add(subAdCreate);
     }
     if (this.isUpdate) {
@@ -90,10 +92,11 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
           this.initialState.id,
           { ...this.advertisementForm.value, id: this.initialState.id, authorId: this.initialState.authorId } as Advertisement
         )
-        .subscribe(() => {});
+        .subscribe(() => {
+          this.handleBack();
+        });
       // this.subscription.add(subAdUpdate);
     }
-    this.handleBack();
   }
 
   handleBack() {
