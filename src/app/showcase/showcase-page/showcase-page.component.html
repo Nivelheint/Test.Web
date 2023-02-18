@@ -44,7 +44,7 @@
       </ng-template>
     </tbody>
   </table>
-  <app-pagination [page]="1"></app-pagination>
+  <app-pagination [page]="queryParams.pageNumber" [totalPages]="queryParams.totalPages" (currentPage)="handlePagination($event)"></app-pagination>
 </div>
 
 <app-advertisement-form

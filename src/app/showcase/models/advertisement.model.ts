@@ -9,3 +9,13 @@ export interface Advertisement {
   startDate: string;
   finishedDate: string;
 }
+
+export interface AdvertisementResponse {
+  result: Advertisement[],
+  pageInfo: {
+    pageNumber: number;
+    pageSize: number;
+    totalItems: number;
+    totalPages: number;
+  }
+}

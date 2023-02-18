@@ -22,6 +22,10 @@ export class ShowcasePageComponent implements OnInit, OnDestroy {
 
   advertisementUpdate: Advertisement = {} as Advertisement;
 
+  queryParams = {
+    pageNumber: 1, pageSize: 20, title: 'null', isActualDate: false, totalPages: 1
+  }
+
   private subscription = new Subscription();
 
   ngOnInit(): void {
@@ -62,9 +66,9 @@ export class ShowcasePageComponent implements OnInit, OnDestroy {
 
   setAdvertisements() {
     const subAds = this.advertisementService
-      .getAdvertisements()
+      .getAdvertisements(this.queryParams.pageNumber, this.queryParams.pageSize, this.queryParams.title, this.queryParams.isActualDate)
       .subscribe((data) => {
-        this.advertisements = data;
+        this.advertisements = data.result;
       });
     this.subscription.add(subAds);
   }
@@ -72,6 +76,11 @@ export class ShowcasePageComponent implements OnInit, OnDestroy {
   reset() {
     this.isCreate = false;
     this.isUpdate = false;
+    this.setAdvertisements();
+  }
+
+  handlePagination(page: number) {
+    this.queryParams.pageNumber = page;
     this.setAdvertisements();
   }
 }

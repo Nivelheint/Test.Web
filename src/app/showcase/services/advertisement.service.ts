@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { Advertisement } from './../models/advertisement.model';
+import {Advertisement, AdvertisementResponse} from './../models/advertisement.model';
 import {HTTP_OPTIONS, URL_API} from 'src/app/constants';
 
 @Injectable({
@@ -11,8 +9,10 @@ import {HTTP_OPTIONS, URL_API} from 'src/app/constants';
 export class AdvertisementService {
   constructor(private http: HttpClient) {}
 
-  getAdvertisements() {
-    return this.http.get<Advertisement[]>(`${URL_API}/Advertisements`);
+  getAdvertisements(pageNumber: number, pageSize: number, title: string, isActualDate: boolean) {
+    return this.http.get<AdvertisementResponse>(`${URL_API}/Advertisements`,
+      { params: { pageNumber, pageSize, title, isActualDate } }
+    );
   }
 
   getAdvertisement(id: number) {
