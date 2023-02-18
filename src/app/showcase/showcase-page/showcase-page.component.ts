@@ -69,6 +69,7 @@ export class ShowcasePageComponent implements OnInit, OnDestroy {
       .getAdvertisements(this.queryParams.pageNumber, this.queryParams.pageSize, this.queryParams.title, this.queryParams.isActualDate)
       .subscribe((data) => {
         this.advertisements = data.result;
+        this.queryParams.totalPages = data.pageInfo.totalPages;
       });
     this.subscription.add(subAds);
   }
