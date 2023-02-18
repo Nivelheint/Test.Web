@@ -1,5 +1,5 @@
 <div class="pagination">
-  <app-nav-button [content]="'<'"></app-nav-button>
+  <app-nav-button [content]="'<'" [disabled]="page <= 1" (click)="handleDown()"></app-nav-button>
   <p class="pagination_page">{{ page }}</p>
-  <app-nav-button [content]="'>'"></app-nav-button>
+  <app-nav-button [content]="'>'" [disabled]="page >= totalPages" (click)="handleUp()"></app-nav-button>
 </div>

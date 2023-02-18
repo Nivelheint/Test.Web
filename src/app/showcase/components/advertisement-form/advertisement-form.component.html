@@ -13,20 +13,26 @@
       formControlName="id"
     />
   </div>
-  <div class="form-group">
-    <label>Выбрать автора</label>
+
+  <label>Выбрать автора</label>
+  <div class="form-group" *ngIf="isUpdate">
     <select
       (change)="changeAuthor($event)"
       formControlName="authorId"
     >
-      <option *ngIf="isUpdate" [value]="initialState.authorId" selected>
+      <option [value]="initialState.authorId" selected>
         {{ initialState.author }}
       </option>
-      <ng-template [ngIf]="isCreate">
-        <option *ngFor="let author of authors" [value]="author.id">
-          {{ author.name + ' ' + author.surname }}
-        </option>
-      </ng-template>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="isCreate">
+    <select
+      (change)="changeAuthor($event)"
+      formControlName="authorId"
+    >
+      <option *ngFor="let author of authors" [value]="author.id">
+        {{ author.name + ' ' + author.surname }}
+      </option>
     </select>
   </div>
   <div class="form-group">
